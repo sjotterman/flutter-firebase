@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "308336830361",
+    "firebase_url": "https://stockkeeper-a627b.firebaseio.com",
+    "project_id": "stockkeeper-a627b",
+    "storage_bucket": "stockkeeper-a627b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:308336830361:android:3eba5b3a7dba08503fd508",
+        "android_client_info": {
+          "package_name": "com.samuelotterman.stockkeeper"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "308336830361-v1ik6efvn290k8j6l89kchkkiru4ft0o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyp8SScH-pTM_4puEWRXYjotLSpcEDrBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "308336830361-v1ik6efvn290k8j6l89kchkkiru4ft0o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
