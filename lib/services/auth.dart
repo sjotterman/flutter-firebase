@@ -5,8 +5,8 @@ class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // create user object based on FirebaseUser
-  User _userFromFirebaseUser(FirebaseUser fbUser) {
-    return fbUser != null ? User(uid: fbUser.uid) : null;
+  User _userFromFirebaseUser(FirebaseUser user) {
+    return user != null ? User(uid: user.uid) : null;
   }
 
   // auth change user stream
@@ -29,6 +29,17 @@ class AuthService {
   // sign in with email and password
 
   // register with email & password
+  Future registerWithEmailAndPassword(String email, String password) async {
+    try {
+      AuthResult result = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser user = result.user;
+      return _userFromFirebaseUser(user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   // sign out
   Future signOut() async {
