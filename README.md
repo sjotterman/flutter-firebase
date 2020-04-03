@@ -1,6 +1,6 @@
 # flutter_firebase
 
-A new Flutter project.
+A mobile app built with FLutter, Firebase Auth, and Firestore.
 
 ## Getting Started
 
