@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/models/brew.dart';
 import 'package:flutter_firebase/models/favorite.dart';
 import 'package:flutter_firebase/models/user.dart';
 import 'package:flutter_firebase/screens/home/favorites_list.dart';
@@ -85,7 +84,7 @@ class Home extends StatelessWidget {
                   textColor: Colors.white,
                   child: Text('Add Favorite'),
                 ),
-                FavoritesList(),
+                Expanded(child: FavoritesList()),
               ],
             )),
       ),
