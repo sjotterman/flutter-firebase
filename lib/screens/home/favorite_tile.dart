@@ -19,8 +19,12 @@ class FavoriteTile extends StatelessWidget {
             icon: Icon(Icons.remove_circle),
             label: Text('Remove'),
             onPressed: () async {
-              await DatabaseService(uid: favorite.userId)
-                  .deleteFavorite(favorite);
+              try {
+                await DatabaseService(uid: favorite.userId)
+                    .deleteFavorite(favorite);
+              } catch (e) {
+                print(e.toString());
+              }
             },
             color: Colors.pink,
           ),

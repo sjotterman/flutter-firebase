@@ -75,8 +75,6 @@ class DatabaseService {
   }
 
   Stream<FavoriteData> get favoriteData {
-    var snapshots = favoriteCollection.document(uid).snapshots();
-    print(snapshots);
     return favoriteCollection
         .document(uid)
         .snapshots()
