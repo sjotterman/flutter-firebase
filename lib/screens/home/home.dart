@@ -60,33 +60,33 @@ class Home extends StatelessWidget {
           ],
         ),
         body: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                  image: AssetImage('assets/coffee_bg.png'), fit: BoxFit.cover),
-            ),
+            // decoration: BoxDecoration(
+            //   image: DecorationImage(
+            //       image: AssetImage('assets/coffee_bg.png'), fit: BoxFit.cover),
+            // ),
             child: Column(
-              children: <Widget>[
-                SizedBox(height: 20.0),
-                MaterialButton(
-                  height: 60.0,
-                  minWidth: 190.0,
-                  onPressed: () {},
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  child: Text('Let\'s eat!'),
-                ),
-                SizedBox(height: 20.0),
-                MaterialButton(
-                  height: 60.0,
-                  minWidth: 190.0,
-                  onPressed: () => _showAddFavoritePanel(),
-                  color: Colors.blue,
-                  textColor: Colors.white,
-                  child: Text('Add Favorite'),
-                ),
-                Expanded(child: FavoritesList()),
-              ],
-            )),
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            MaterialButton(
+              height: 60.0,
+              minWidth: 190.0,
+              onPressed: () {},
+              color: Colors.blue,
+              textColor: Colors.white,
+              child: Text('Let\'s eat!'),
+            ),
+            SizedBox(height: 20.0),
+            MaterialButton(
+              height: 60.0,
+              minWidth: 190.0,
+              onPressed: () => _showAddFavoritePanel(),
+              color: Colors.blue,
+              textColor: Colors.white,
+              child: Text('Add Favorite'),
+            ),
+            Expanded(child: FavoritesList()),
+          ],
+        )),
       ),
     );
   }
