@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/models/favorite.dart';
+import 'package:flutter_firebase/services/database.dart';
 
 class FavoriteTile extends StatelessWidget {
   final Favorite favorite;
@@ -14,7 +15,15 @@ class FavoriteTile extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
         child: ListTile(
           title: Text(favorite.name),
-          subtitle: Text('Subtitle'),
+          trailing: FlatButton.icon(
+            icon: Icon(Icons.remove_circle),
+            label: Text('Remove'),
+            onPressed: () async {
+              await DatabaseService(uid: favorite.userId)
+                  .deleteFavorite(favorite);
+            },
+            color: Colors.pink,
+          ),
         ),
       ),
     );

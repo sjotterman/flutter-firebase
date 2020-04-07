@@ -14,18 +14,23 @@ class DatabaseService {
   final CollectionReference favoriteCollection =
       Firestore.instance.collection('favorites');
 
-  Future updateUserData(String sugars, String name, int strength) async {
-    return await brewCollection
-        .document(uid)
-        .setData({'sugars': sugars, 'name': name, 'strength': strength});
+  Future updateUserData(String name) async {
+    return await brewCollection.document(uid).setData({'name': name});
   }
 
   Future updateFavorite(String name) async {
     var existingFavoriteData = await favoriteCollection.document(uid).get();
     var items = existingFavoriteData.data['items'];
-    print(existingFavoriteData.data['items']);
-    print(items.runtimeType);
     items.add({'name': name});
+    return await favoriteCollection.document(uid).setData({'items': items});
+  }
+
+  Future deleteFavorite(Favorite favorite) async {
+    var existingFavoriteData = await favoriteCollection.document(uid).get();
+    var items = existingFavoriteData.data['items'];
+    items = items.where((item) {
+      return item['name'] != favorite.name;
+    }).toList();
     return await favoriteCollection.document(uid).setData({'items': items});
   }
 
@@ -53,7 +58,7 @@ class DatabaseService {
     var items = snapshot.data['items'];
     List<Favorite> favorites = List();
     items.forEach((item) {
-      Favorite newFavorite = Favorite(uid: uid, name: item['name']);
+      Favorite newFavorite = Favorite(userId: uid, name: item['name']);
       favorites.add(newFavorite);
     });
     return FavoriteData(favorites: favorites);

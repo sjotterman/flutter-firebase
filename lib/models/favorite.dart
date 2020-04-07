@@ -1,8 +1,8 @@
 class Favorite {
   final String name;
-  final String uid;
+  final String userId;
 
-  Favorite({this.uid, this.name});
+  Favorite({this.userId, this.name});
 }
 
 class FavoriteData {

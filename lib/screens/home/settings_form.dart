@@ -12,11 +12,8 @@ class SettingsForm extends StatefulWidget {
 
 class _SettingsFormState extends State<SettingsForm> {
   final _formKey = GlobalKey<FormState>();
-  final List<String> sugars = ['0', '1', '2', '3', '4'];
 
   String _currentName;
-  String _currentSugars;
-  int _currentStrength;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +32,7 @@ class _SettingsFormState extends State<SettingsForm> {
             child: Column(
               children: <Widget>[
                 Text(
-                  'Update your brew settings.',
+                  'Update your settings.',
                   style: TextStyle(fontSize: 18.0),
                 ),
                 SizedBox(height: 20.0),
@@ -48,31 +45,6 @@ class _SettingsFormState extends State<SettingsForm> {
                 ),
                 SizedBox(height: 20.0),
                 //dropdown
-                DropdownButtonFormField(
-                  decoration: textInputDecoration,
-                  value: _currentSugars ?? userData.sugars,
-                  items: sugars.map((sugar) {
-                    return DropdownMenuItem(
-                      value: sugar,
-                      child: Text('$sugar sugars'),
-                    );
-                  }).toList(),
-                  onChanged: (val) {
-                    setState(() => _currentSugars = val);
-                  },
-                ),
-                //slider
-                Slider(
-                    value: (_currentStrength ?? userData.strength).toDouble(),
-                    activeColor:
-                        Colors.brown[_currentStrength ?? userData.strength],
-                    inactiveColor:
-                        Colors.brown[_currentStrength ?? userData.strength],
-                    min: 100.0,
-                    max: 900.0,
-                    divisions: 8,
-                    onChanged: (val) =>
-                        setState(() => _currentStrength = val.round())),
                 RaisedButton(
                   color: Colors.pink[400],
                   child: Text(
@@ -81,10 +53,8 @@ class _SettingsFormState extends State<SettingsForm> {
                   ),
                   onPressed: () async {
                     if (_formKey.currentState.validate()) {
-                      await DatabaseService(uid: user.uid).updateUserData(
-                          _currentSugars ?? userData.sugars,
-                          _currentName ?? userData.name,
-                          _currentStrength ?? userData.strength);
+                      await DatabaseService(uid: user.uid)
+                          .updateUserData(_currentName ?? userData.name);
                       Navigator.pop(context);
                     }
                   },
