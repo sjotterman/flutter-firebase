@@ -8,7 +8,7 @@
     <uses-permission
         android:name="android.permission.INTERNET" />
     <application
-        android:name="com.samuelotterman.stockkeeper"
+        android:name="io.flutter.app.FlutterApplication"
         android:label="Meal Picker"
         android:icon="@mipmap/ic_launcher">
         <activity
