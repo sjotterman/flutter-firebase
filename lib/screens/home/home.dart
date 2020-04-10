@@ -27,10 +27,9 @@ class Home extends StatelessWidget {
     return StreamProvider<FavoriteData>.value(
       value: DatabaseService(uid: user.uid).favoriteData,
       child: Scaffold(
-        backgroundColor: Colors.brown[50],
         appBar: AppBar(
+          backgroundColor: Colors.blue,
           title: Text('Meal Picker'),
-          backgroundColor: Colors.brown[400],
           elevation: 0.0,
           actions: <Widget>[
             FlatButton.icon(

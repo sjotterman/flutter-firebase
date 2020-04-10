@@ -26,9 +26,7 @@ class _SignInState extends State<SignIn> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
             appBar: AppBar(
-                backgroundColor: Colors.brown[400],
                 elevation: 0.0,
                 title: Text('Sign in to Stockkeeper'),
                 actions: <Widget>[
@@ -68,7 +66,6 @@ class _SignInState extends State<SignIn> {
                         ),
                         SizedBox(height: 20.0),
                         RaisedButton(
-                          color: Colors.pink[400],
                           child: Text('Sign In',
                               style: TextStyle(color: Colors.white)),
                           onPressed: () async {

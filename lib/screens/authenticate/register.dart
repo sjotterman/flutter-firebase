@@ -25,9 +25,7 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
-            backgroundColor: Colors.brown[100],
             appBar: AppBar(
-                backgroundColor: Colors.brown[400],
                 elevation: 0.0,
                 title: Text('Sign up to Stockkeeper'),
                 actions: <Widget>[
@@ -67,9 +65,10 @@ class _RegisterState extends State<Register> {
                         ),
                         SizedBox(height: 20.0),
                         RaisedButton(
-                          color: Colors.pink[400],
-                          child: Text('Register',
-                              style: TextStyle(color: Colors.white)),
+                          child: Text(
+                            'Register',
+                            style: TextStyle(color: Colors.white),
+                          ),
                           onPressed: () async {
                             if (_formKey.currentState.validate()) {
                               setState(() => loading = true);
