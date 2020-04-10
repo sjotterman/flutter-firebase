@@ -16,6 +16,9 @@ class FavoriteTile extends StatelessWidget {
         child: ListTile(
           title: Text(favorite.name),
           trailing: FlatButton.icon(
+            shape: RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(10.0),
+            ),
             icon: Icon(Icons.remove_circle),
             label: Text('Remove'),
             onPressed: () async {

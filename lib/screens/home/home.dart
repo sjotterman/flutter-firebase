@@ -68,6 +68,9 @@ class Home extends StatelessWidget {
           children: <Widget>[
             SizedBox(height: 20.0),
             MaterialButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(10.0),
+              ),
               height: 60.0,
               minWidth: 190.0,
               onPressed: () {},
@@ -77,6 +80,9 @@ class Home extends StatelessWidget {
             ),
             SizedBox(height: 20.0),
             MaterialButton(
+              shape: RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(10.0),
+              ),
               height: 60.0,
               minWidth: 190.0,
               onPressed: () => _showAddFavoritePanel(),
