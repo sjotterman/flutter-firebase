@@ -26,49 +26,57 @@ class FavoritesOverview extends StatelessWidget {
           });
     }
 
+    void _showRandomSelection(List favorites) {
+      var rng = new Random();
+      var randomIndex = rng.nextInt(favorites.length);
+      var randomFavorite = favorites[randomIndex];
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Random selection'),
+            content: Text(
+                'Your random selection is: ${randomFavorite.name} (${randomFavorite.foodType})'),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Close'),
+              )
+            ],
+          );
+        },
+      );
+    }
+
+    void _showNeedMoreFavoritesDialog() {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Need more favorites!'),
+            content:
+                Text('You need at least two favorites from which to pick!'),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Close'),
+              )
+            ],
+          );
+        },
+      );
+    }
+
     void _onChoiceButtonPress() {
       var numFavorites = favorites.length;
       if (numFavorites > 1) {
-        var rng = new Random();
-        var randomIndex = rng.nextInt(favorites.length);
-        var randomFavorite = favorites[randomIndex];
-        print(randomIndex);
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Random selection'),
-              content: Text('Your random selection is: ${randomFavorite.name}'),
-              actions: <Widget>[
-                FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Close'),
-                )
-              ],
-            );
-          },
-        );
+        _showRandomSelection(favorites);
       } else {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              title: Text('Need more favorites!'),
-              content:
-                  Text('You need at least two favorites from which to pick!'),
-              actions: <Widget>[
-                FlatButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Close'),
-                )
-              ],
-            );
-          },
-        );
+        _showNeedMoreFavoritesDialog();
       }
     }
 
@@ -89,7 +97,7 @@ class FavoritesOverview extends StatelessWidget {
           onPressed: () => _onChoiceButtonPress(),
           color: Colors.blue,
           textColor: Colors.white,
-          child: Text('Let\'s eat!'),
+          child: Text('What should I eat?'),
         ),
         SizedBox(height: 20.0),
         MaterialButton(
@@ -101,7 +109,7 @@ class FavoritesOverview extends StatelessWidget {
           onPressed: () => _showAddFavoritePanel(),
           color: Colors.blue,
           textColor: Colors.white,
-          child: Text('Add Favorite'),
+          child: Text('Add favorite food'),
         ),
         Expanded(child: FavoritesList()),
       ],
