@@ -15,6 +15,7 @@ class FavoriteTile extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
         child: ListTile(
           title: Text(favorite.name),
+          subtitle: Text(favorite.foodType),
           trailing: FlatButton.icon(
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(10.0),

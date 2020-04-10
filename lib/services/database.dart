@@ -18,10 +18,13 @@ class DatabaseService {
     return await brewCollection.document(uid).setData({'name': name});
   }
 
-  Future updateFavorite(String name) async {
+  Future updateFavorite(String name, String foodType) async {
     var existingFavoriteData = await favoriteCollection.document(uid).get();
     var items = existingFavoriteData.data['items'];
-    items.add({'name': name});
+    items.add({
+      'name': name,
+      'foodType': foodType,
+    });
     return await favoriteCollection.document(uid).setData({'items': items});
   }
 
@@ -58,7 +61,11 @@ class DatabaseService {
     var items = snapshot.data['items'];
     List<Favorite> favorites = List();
     items.forEach((item) {
-      Favorite newFavorite = Favorite(userId: uid, name: item['name']);
+      Favorite newFavorite = Favorite(
+        userId: uid,
+        foodType: item['foodType'],
+        name: item['name'],
+      );
       favorites.add(newFavorite);
     });
     return FavoriteData(favorites: favorites);
