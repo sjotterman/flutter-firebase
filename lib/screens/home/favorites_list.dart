@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/models/favorite.dart';
+import 'package:flutter_firebase/models/user.dart';
 import 'package:flutter_firebase/screens/home/favorite_tile.dart';
 import 'package:flutter_firebase/shared/loading.dart';
 import 'package:provider/provider.dart';
@@ -12,11 +12,11 @@ class FavoritesList extends StatefulWidget {
 class _FavoritesListState extends State<FavoritesList> {
   @override
   Widget build(BuildContext context) {
-    final favoriteData = Provider.of<FavoriteData>(context) ?? null;
-    if (favoriteData == null) {
+    final userData = Provider.of<UserData>(context) ?? null;
+    if (userData == null) {
       return Loading();
     }
-    final favorites = favoriteData.favorites;
+    final favorites = userData.favorites;
     return ListView.builder(
       // scrollDirection: Axis.vertical,
       shrinkWrap: true,

@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/models/favorite.dart';
+import 'package:flutter_firebase/models/user.dart';
 import 'package:flutter_firebase/screens/home/add_favorite_form.dart';
 import 'package:flutter_firebase/screens/home/favorites_list.dart';
 import 'package:provider/provider.dart';
@@ -13,8 +13,8 @@ class FavoritesOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final favoriteData = Provider.of<FavoriteData>(context) ?? null;
-    final favorites = favoriteData != null ? favoriteData.favorites : [];
+    final userData = Provider.of<UserData>(context) ?? null;
+    final favorites = userData != null ? userData.favorites : [];
     void _showAddFavoritePanel() {
       showModalBottomSheet(
           context: context,

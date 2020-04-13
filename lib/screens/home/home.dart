@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/models/favorite.dart';
 import 'package:flutter_firebase/models/user.dart';
 import 'package:flutter_firebase/screens/home/favorites_overview.dart';
 import 'package:flutter_firebase/screens/home/settings_form.dart';
@@ -24,8 +23,8 @@ class Home extends StatelessWidget {
 
     final user = Provider.of<User>(context);
 
-    return StreamProvider<FavoriteData>.value(
-      value: DatabaseService(uid: user.uid).favoriteData,
+    return StreamProvider<UserData>.value(
+      value: DatabaseService(uid: user.uid).userData,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,

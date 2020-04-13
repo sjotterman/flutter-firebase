@@ -1,3 +1,5 @@
+import 'package:flutter_firebase/models/favorite.dart';
+
 class User {
   final String uid;
 
@@ -7,8 +9,7 @@ class User {
 class UserData {
   final String uid;
   final String name;
-  final String sugars;
-  final int strength;
+  final List<Favorite> favorites;
 
-  UserData({this.uid, this.name, this.sugars, this.strength});
+  UserData({this.uid, this.name, this.favorites});
 }
