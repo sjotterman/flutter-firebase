@@ -28,7 +28,7 @@ class _SignInState extends State<SignIn> {
         : Scaffold(
             appBar: AppBar(
                 elevation: 0.0,
-                title: Text('Sign in to Stockkeeper'),
+                title: Text('Sign In'),
                 actions: <Widget>[
                   FlatButton.icon(
                       icon: Icon(Icons.person),

@@ -1,7 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/models/user.dart';
+import 'package:flutter_firebase/provider_models/selection_data.dart';
 import 'package:flutter_firebase/screens/home/add_favorite_form.dart';
 import 'package:flutter_firebase/screens/home/favorites_list.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +13,7 @@ class FavoritesOverview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final userData = Provider.of<UserData>(context) ?? null;
+    final selectionData = Provider.of<SelectionData>(context);
     final favorites = userData != null ? userData.favorites : [];
     void _showAddFavoritePanel() {
       showModalBottomSheet(
@@ -24,30 +24,6 @@ class FavoritesOverview extends StatelessWidget {
               child: AddFavoriteForm(),
             );
           });
-    }
-
-    void _showRandomSelection(List favorites) {
-      var rng = new Random();
-      var randomIndex = rng.nextInt(favorites.length);
-      var randomFavorite = favorites[randomIndex];
-      showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text('Random selection'),
-            content: Text(
-                'Your random selection is: ${randomFavorite.name} (${randomFavorite.foodType})'),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text('Close'),
-              )
-            ],
-          );
-        },
-      );
     }
 
     void _showNeedMoreFavoritesDialog() {
@@ -74,7 +50,8 @@ class FavoritesOverview extends StatelessWidget {
     void _onChoiceButtonPress() {
       var numFavorites = favorites.length;
       if (numFavorites > 1) {
-        _showRandomSelection(favorites);
+        selectionData.setOptions(favorites);
+        Navigator.pushNamed(context, '/selection');
       } else {
         _showNeedMoreFavoritesDialog();
       }

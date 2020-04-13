@@ -27,7 +27,7 @@ class _RegisterState extends State<Register> {
         : Scaffold(
             appBar: AppBar(
                 elevation: 0.0,
-                title: Text('Sign up to Stockkeeper'),
+                title: Text('Sign Up'),
                 actions: <Widget>[
                   FlatButton.icon(
                       icon: Icon(Icons.person),
