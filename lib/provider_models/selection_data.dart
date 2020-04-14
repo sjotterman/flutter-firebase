@@ -6,7 +6,9 @@ import 'package:flutter_firebase/models/favorite.dart';
 
 class SelectionData extends ChangeNotifier {
   List<Favorite> _options = [];
-  Favorite finalSelection;
+  Favorite _finalSelection;
+
+  Favorite get finalSelection => _finalSelection;
 
   UnmodifiableListView<Favorite> get options => UnmodifiableListView(_options);
 
@@ -15,7 +17,6 @@ class SelectionData extends ChangeNotifier {
     favorites.forEach((f) {
       _options.add(f);
     });
-    _options.forEach((f) => print(f.name));
     notifyListeners();
   }
 
@@ -47,7 +48,7 @@ class SelectionData extends ChangeNotifier {
   }
 
   void resetSelection() {
-    finalSelection = null;
+    _finalSelection = null;
     notifyListeners();
   }
 
@@ -75,7 +76,7 @@ class SelectionData extends ChangeNotifier {
   void chooseRandomly() {
     var rng = new Random();
     var randomIndex = rng.nextInt(_options.length);
-    finalSelection = _options[randomIndex];
+    _finalSelection = _options[randomIndex];
     notifyListeners();
   }
 }
