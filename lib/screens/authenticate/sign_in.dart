@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_firebase/services/auth.dart';
 import 'package:flutter_firebase/shared/constants.dart';
 import 'package:flutter_firebase/shared/loading.dart';
+import 'package:flutter_firebase/shared/validation.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -47,8 +48,7 @@ class _SignInState extends State<SignIn> {
                         TextFormField(
                             decoration:
                                 textInputDecoration.copyWith(hintText: 'Email'),
-                            validator: (val) =>
-                                val.isEmpty ? 'Enter an email' : null,
+                            validator: EmailFieldValidator.validate,
                             onChanged: (val) {
                               setState(() => email = val);
                             }),
@@ -57,9 +57,7 @@ class _SignInState extends State<SignIn> {
                           decoration: textInputDecoration.copyWith(
                               hintText: 'Password'),
                           obscureText: true,
-                          validator: (val) => val.length < 6
-                              ? 'Password must be 6+ characters'
-                              : null,
+                          validator: PasswordFieldValidator.validate,
                           onChanged: (val) {
                             setState(() => password = val);
                           },
