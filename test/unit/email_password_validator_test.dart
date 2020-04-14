@@ -11,11 +11,15 @@ void main() {
     var result = EmailFieldValidator.validate('test@otterman.dev');
     expect(result, null);
   });
+  test('Email with + returns null', () {
+    var result = EmailFieldValidator.validate('test+test@otterman.dev');
+    expect(result, null);
+  });
 
-  // test('Invalid email returns error string', () {
-  //   var result = EmailFieldValidator.validate('test');
-  //   expect(result, 'Please enter a valid email');
-  // });
+  test('Invalid email returns error string', () {
+    var result = EmailFieldValidator.validate('test');
+    expect(result, 'Enter an email');
+  });
 
   test('Empty password returns error string', () {
     var result = PasswordFieldValidator.validate('');
