@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/models/favorite.dart';
 import 'package:flutter_firebase/models/user.dart';
-import 'package:flutter_firebase/provider_models/selection_data.dart';
-import 'package:flutter_firebase/screens/authenticate/authenticate.dart';
 import 'package:flutter_firebase/screens/wrapper.dart';
 import 'package:flutter_firebase/services/auth.dart';
-import 'package:flutter_firebase/services/database.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_firebase/main.dart';
