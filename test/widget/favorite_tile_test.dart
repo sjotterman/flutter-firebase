@@ -32,5 +32,10 @@ void main() {
     expect(find.text('Pizza'), findsOneWidget);
     expect(find.text('Takeout'), findsOneWidget);
     expect(find.text('Remove'), findsOneWidget);
+
+    // Need to figure out how to be more specific in looking for widgets
+    // WidgetPredicate removeButtonPredicate =
+    //     (Widget widget) => widget is ListTile;
+    // expect(find.byWidgetPredicate(removeButtonPredicate), findsOneWidget);
   });
 }
