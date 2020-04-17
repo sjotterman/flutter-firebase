@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/provider_models/selection_data.dart';
 import 'package:flutter_firebase/screens/selection/large_selection_button.dart';
+import 'package:flutter_firebase/screens/selection/small_selection_button.dart';
 import 'package:provider/provider.dart';
 
 class Selection extends StatelessWidget {
@@ -46,20 +47,13 @@ class Selection extends StatelessWidget {
                 style: TextStyle(fontSize: 40.0),
               ),
               SizedBox(height: 60.0),
-              MaterialButton(
-                shape: RoundedRectangleBorder(
-                  borderRadius: new BorderRadius.circular(10.0),
-                ),
-                height: 30.0,
-                minWidth: 90.0,
+              SmallSelectionButton(
                 onPressed: () {
                   // Navigate back to the first screen by popping the current route
                   // off the stack.
                   selectionData.resetSelection();
                   Navigator.pop(context);
                 },
-                color: Colors.blue,
-                textColor: Colors.white,
                 child: Text('Go back!'),
               ),
             ],
@@ -115,19 +109,13 @@ class Selection extends StatelessWidget {
               child: Text('Surprise me!'),
             ),
             SizedBox(height: 60.0),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(10.0),
-              ),
-              height: 30.0,
-              minWidth: 90.0,
+            SmallSelectionButton(
               onPressed: () {
                 // Navigate back to the first screen by popping the current route
                 // off the stack.
                 Navigator.pop(context);
               },
               color: Colors.blue,
-              textColor: Colors.white,
               child: Text('Go back!'),
             ),
           ],

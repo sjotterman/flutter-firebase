@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LargeSelectionButton extends StatelessWidget {
-  const LargeSelectionButton({
+class SmallSelectionButton extends StatelessWidget {
+  const SmallSelectionButton({
     Key key,
     this.color,
     this.textColor,
@@ -22,8 +22,8 @@ class LargeSelectionButton extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: new BorderRadius.circular(10.0),
       ),
-      height: 60.0,
-      minWidth: 190.0,
+      height: 30.0,
+      minWidth: 90.0,
       onPressed: onPressed,
       color: buttonColor,
       disabledColor: Colors.grey[500],
