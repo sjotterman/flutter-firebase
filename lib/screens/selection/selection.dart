@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/provider_models/selection_data.dart';
-import 'package:flutter_firebase/screens/selection/large_selection_button.dart';
-import 'package:flutter_firebase/screens/selection/small_selection_button.dart';
+import 'package:flutter_firebase/screens/selection/large_custom_button.dart';
+import 'package:flutter_firebase/screens/selection/small_custom_button.dart';
 import 'package:provider/provider.dart';
 
 class Selection extends StatelessWidget {
@@ -47,7 +47,7 @@ class Selection extends StatelessWidget {
                 style: TextStyle(fontSize: 40.0),
               ),
               SizedBox(height: 60.0),
-              SmallSelectionButton(
+              SmallCustomButton(
                 onPressed: () {
                   // Navigate back to the first screen by popping the current route
                   // off the stack.
@@ -74,7 +74,7 @@ class Selection extends StatelessWidget {
               style: TextStyle(fontSize: 20.0),
             ),
             SizedBox(height: 60.0),
-            LargeSelectionButton(
+            LargeCustomButton(
               onPressed: selectionData.numTakeout <= 1
                   ? null
                   : () {
@@ -83,7 +83,7 @@ class Selection extends StatelessWidget {
               child: Text('Takeout'),
             ),
             SizedBox(height: 20.0),
-            LargeSelectionButton(
+            LargeCustomButton(
               onPressed: selectionData.numSitdown <= 1
                   ? null
                   : () {
@@ -92,7 +92,7 @@ class Selection extends StatelessWidget {
               child: Text('Sit-down'),
             ),
             SizedBox(height: 20.0),
-            LargeSelectionButton(
+            LargeCustomButton(
               onPressed: selectionData.numHomemade <= 1
                   ? null
                   : () {
@@ -101,7 +101,7 @@ class Selection extends StatelessWidget {
               child: Text('Homemade'),
             ),
             SizedBox(height: 20.0),
-            LargeSelectionButton(
+            LargeCustomButton(
               onPressed: () {
                 _selectRandom();
               },
@@ -109,7 +109,7 @@ class Selection extends StatelessWidget {
               child: Text('Surprise me!'),
             ),
             SizedBox(height: 60.0),
-            SmallSelectionButton(
+            SmallCustomButton(
               onPressed: () {
                 // Navigate back to the first screen by popping the current route
                 // off the stack.

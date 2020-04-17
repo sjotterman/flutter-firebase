@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SmallSelectionButton extends StatelessWidget {
-  const SmallSelectionButton({
+class LargeCustomButton extends StatelessWidget {
+  const LargeCustomButton({
     Key key,
     this.color,
     this.textColor,
@@ -20,10 +20,10 @@ class SmallSelectionButton extends StatelessWidget {
     final actualTextColor = textColor ?? Colors.white;
     return MaterialButton(
       shape: RoundedRectangleBorder(
-        borderRadius: new BorderRadius.circular(10.0),
+        borderRadius: new BorderRadius.circular(15.0),
       ),
-      height: 30.0,
-      minWidth: 90.0,
+      height: 60.0,
+      minWidth: 190.0,
       onPressed: onPressed,
       color: buttonColor,
       disabledColor: Colors.grey[500],

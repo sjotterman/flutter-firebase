@@ -3,6 +3,7 @@ import 'package:flutter_firebase/models/user.dart';
 import 'package:flutter_firebase/provider_models/selection_data.dart';
 import 'package:flutter_firebase/screens/home/add_favorite_form.dart';
 import 'package:flutter_firebase/screens/home/favorites_list.dart';
+import 'package:flutter_firebase/screens/selection/large_custom_button.dart';
 import 'package:provider/provider.dart';
 
 class FavoritesOverview extends StatelessWidget {
@@ -65,27 +66,13 @@ class FavoritesOverview extends StatelessWidget {
         child: Column(
       children: <Widget>[
         SizedBox(height: 20.0),
-        MaterialButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(10.0),
-          ),
-          height: 60.0,
-          minWidth: 190.0,
+        LargeCustomButton(
           onPressed: () => _onChoiceButtonPress(),
-          color: Colors.blue,
-          textColor: Colors.white,
           child: Text('What should I eat?'),
         ),
         SizedBox(height: 20.0),
-        MaterialButton(
-          shape: RoundedRectangleBorder(
-            borderRadius: new BorderRadius.circular(10.0),
-          ),
-          height: 60.0,
-          minWidth: 190.0,
+        LargeCustomButton(
           onPressed: () => _showAddFavoritePanel(),
-          color: Colors.blue,
-          textColor: Colors.white,
           child: Text('Add favorite food'),
         ),
         Expanded(child: FavoritesList()),
