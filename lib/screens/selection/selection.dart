@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/provider_models/selection_data.dart';
+import 'package:flutter_firebase/screens/selection/large_selection_button.dart';
 import 'package:provider/provider.dart';
 
 class Selection extends StatelessWidget {
@@ -79,71 +80,38 @@ class Selection extends StatelessWidget {
               style: TextStyle(fontSize: 20.0),
             ),
             SizedBox(height: 60.0),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(10.0),
-              ),
-              height: 60.0,
-              minWidth: 190.0,
+            LargeSelectionButton(
               onPressed: selectionData.numTakeout <= 1
                   ? null
                   : () {
                       _selectTakeout();
                     },
-              color: Colors.blue,
-              disabledColor: Colors.grey[500],
-              disabledTextColor: Colors.grey[900],
-              textColor: Colors.white,
               child: Text('Takeout'),
             ),
             SizedBox(height: 20.0),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(10.0),
-              ),
-              height: 60.0,
-              minWidth: 190.0,
+            LargeSelectionButton(
               onPressed: selectionData.numSitdown <= 1
                   ? null
                   : () {
                       _selectSitDown();
                     },
-              disabledColor: Colors.grey[500],
-              disabledTextColor: Colors.grey[900],
-              color: Colors.blue,
-              textColor: Colors.white,
               child: Text('Sit-down'),
             ),
             SizedBox(height: 20.0),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(10.0),
-              ),
-              height: 60.0,
-              minWidth: 190.0,
+            LargeSelectionButton(
               onPressed: selectionData.numHomemade <= 1
                   ? null
                   : () {
                       _selectHomemade();
                     },
-              disabledColor: Colors.grey[500],
-              disabledTextColor: Colors.grey[900],
-              color: Colors.blue,
-              textColor: Colors.white,
               child: Text('Homemade'),
             ),
             SizedBox(height: 20.0),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(10.0),
-              ),
-              height: 60.0,
-              minWidth: 190.0,
+            LargeSelectionButton(
               onPressed: () {
                 _selectRandom();
               },
               color: Colors.green,
-              textColor: Colors.white,
               child: Text('Surprise me!'),
             ),
             SizedBox(height: 60.0),
