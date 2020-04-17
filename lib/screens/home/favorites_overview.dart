@@ -3,7 +3,7 @@ import 'package:flutter_firebase/models/user.dart';
 import 'package:flutter_firebase/provider_models/selection_data.dart';
 import 'package:flutter_firebase/screens/home/add_favorite_form.dart';
 import 'package:flutter_firebase/screens/home/favorites_list.dart';
-import 'package:flutter_firebase/screens/selection/large_custom_button.dart';
+import 'package:flutter_firebase/shared/large_custom_button.dart';
 import 'package:provider/provider.dart';
 
 class FavoritesOverview extends StatelessWidget {

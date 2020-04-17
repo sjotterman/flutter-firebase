@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/provider_models/selection_data.dart';
-import 'package:flutter_firebase/screens/selection/large_custom_button.dart';
-import 'package:flutter_firebase/screens/selection/small_custom_button.dart';
+import 'package:flutter_firebase/shared/large_custom_button.dart';
+import 'package:flutter_firebase/shared/small_custom_button.dart';
 import 'package:provider/provider.dart';
 
 class Selection extends StatelessWidget {
