@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/provider_models/selection_data.dart';
+import 'package:flutter_firebase/screens/selection/display_selection.dart';
 import 'package:flutter_firebase/shared/large_custom_button.dart';
 import 'package:flutter_firebase/shared/small_custom_button.dart';
 import 'package:provider/provider.dart';
@@ -27,38 +28,15 @@ class Selection extends StatelessWidget {
     }
 
     if (selectionData.finalSelection != null) {
-      final name = selectionData.finalSelection.name;
-      final foodType = selectionData.finalSelection.foodType;
-      return Scaffold(
-        appBar: AppBar(
-          title: Text("Selection"),
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                'Your $foodType meal should be: ',
-                style: TextStyle(fontSize: 40.0),
-              ),
-              SizedBox(height: 60.0),
-              Text(
-                name,
-                style: TextStyle(fontSize: 40.0),
-              ),
-              SizedBox(height: 60.0),
-              SmallCustomButton(
-                onPressed: () {
-                  // Navigate back to the first screen by popping the current route
-                  // off the stack.
-                  selectionData.resetSelection();
-                  Navigator.pop(context);
-                },
-                child: Text('Go back!'),
-              ),
-            ],
-          ),
-        ),
+      final resetSelection = () {
+        // Navigate back to the first screen by popping the current route
+        // off the stack.
+        selectionData.resetSelection();
+        Navigator.pop(context);
+      };
+      return DisplaySelection(
+        selection: selectionData.finalSelection,
+        resetSelection: resetSelection,
       );
     }
     return Scaffold(
