@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/models/favorite.dart';
+import 'package:flutter_firebase/provider_models/selection_data.dart';
 import 'package:flutter_firebase/shared/small_custom_button.dart';
+import 'package:provider/provider.dart';
 
 class DisplaySelection extends StatelessWidget {
   const DisplaySelection({
     Key key,
-    @required this.selection,
-    @required this.resetSelection,
   }) : super(key: key);
-
-  final Favorite selection;
-  final Null Function() resetSelection;
 
   @override
   Widget build(BuildContext context) {
+    final selectionData = Provider.of<SelectionData>(context);
+    final selection = selectionData.finalSelection;
+    final resetSelection = () {
+      // Navigate back to the first screen by popping the current route
+      // off the stack.
+      selectionData.resetSelection();
+      Navigator.pop(context);
+    };
     return Scaffold(
       appBar: AppBar(
         title: Text("Selection"),
