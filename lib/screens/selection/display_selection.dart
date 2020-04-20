@@ -24,6 +24,7 @@ class DisplaySelection extends StatelessWidget {
           children: <Widget>[
             Text(
               'Your ${selection.foodType} meal should be: ',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 40.0),
             ),
             SizedBox(height: 60.0),
