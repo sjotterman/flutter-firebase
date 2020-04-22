@@ -59,6 +59,7 @@ class DatabaseService {
     });
     return UserData(
       uid: uid,
+      name: snapshot.data['name'],
       favorites: favorites,
     );
   }
