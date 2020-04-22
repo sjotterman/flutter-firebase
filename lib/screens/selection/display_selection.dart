@@ -16,7 +16,7 @@ class DisplaySelection extends StatelessWidget {
       // Navigate back to the first screen by popping the current route
       // off the stack.
       selectionData.resetSelection();
-      Navigator.pop(context);
+      Navigator.pushReplacementNamed(context, '/');
     };
     return Scaffold(
       appBar: AppBar(

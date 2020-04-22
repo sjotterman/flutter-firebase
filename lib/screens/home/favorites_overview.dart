@@ -52,7 +52,7 @@ class FavoritesOverview extends StatelessWidget {
       var numFavorites = favorites.length;
       if (numFavorites > 1) {
         selectionData.setOptions(favorites);
-        Navigator.pushNamed(context, '/selection');
+        Navigator.pushNamed(context, '/soloOrGroup');
       } else {
         _showNeedMoreFavoritesDialog();
       }

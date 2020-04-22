@@ -3,10 +3,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/models/favorite.dart';
+import 'package:flutter_firebase/shared/constants.dart';
 
 class SelectionData extends ChangeNotifier {
   List<Favorite> _options = [];
   Favorite _finalSelection;
+  selectionGroupType _groupType;
 
   Favorite get finalSelection => _finalSelection;
 
@@ -18,6 +20,10 @@ class SelectionData extends ChangeNotifier {
       _options.add(f);
     });
     notifyListeners();
+  }
+
+  selectionGroupType get groupType {
+    return _groupType;
   }
 
   int get numTakeout {
@@ -49,7 +55,12 @@ class SelectionData extends ChangeNotifier {
 
   void resetSelection() {
     _finalSelection = null;
+    _groupType = null;
     notifyListeners();
+  }
+
+  void selectGroupType(selectionGroupType groupType) {
+    _groupType = groupType;
   }
 
   void chooseHomemade() {

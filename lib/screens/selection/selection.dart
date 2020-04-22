@@ -8,7 +8,8 @@ class Selection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final selectionData = Provider.of<SelectionData>(context);
-
+    // TODO: logic to change which page displays depending on the selected
+    // groupType
     if (selectionData.finalSelection != null) {
       return DisplaySelection();
     }

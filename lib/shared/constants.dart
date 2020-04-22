@@ -12,3 +12,8 @@ const textInputDecoration = InputDecoration(
     width: 2.0,
   )),
 );
+
+enum selectionGroupType {
+  solo,
+  group,
+}
