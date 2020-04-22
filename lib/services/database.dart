@@ -14,7 +14,10 @@ class DatabaseService {
       Firestore.instance.collection('favorites');
 
   Future updateUserData(String name) async {
-    return await userCollection.document(uid).setData({'name': name});
+    var userSnapshot = await userCollection.document(uid).get();
+    var data = userSnapshot.data;
+    data['name'] = name;
+    return await userCollection.document(uid).updateData(data);
   }
 
   Future createUserWithEmail(String name) async {
@@ -24,22 +27,22 @@ class DatabaseService {
   }
 
   Future updateFavorite(String name, String foodType) async {
-    var userData = await userCollection.document(uid).get();
-    var items = userData.data['items'];
-    items.add({
+    var userSnapshot = await userCollection.document(uid).get();
+    var data = userSnapshot.data;
+    data['items'].add({
       'name': name,
       'foodType': foodType,
     });
-    return await userCollection.document(uid).setData({'items': items});
+    return await userCollection.document(uid).updateData(data);
   }
 
   Future deleteFavorite(Favorite favorite) async {
-    var userData = await userCollection.document(uid).get();
-    var items = userData.data['items'];
-    items = items.where((item) {
+    var userSnapshot = await userCollection.document(uid).get();
+    var data = userSnapshot.data;
+    data['items'] = data['items'].where((item) {
       return item['name'] != favorite.name;
     }).toList();
-    return await userCollection.document(uid).setData({'items': items});
+    return await userCollection.document(uid).updateData(data);
   }
 
   // user data from snapshot
