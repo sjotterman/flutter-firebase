@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/models/session.dart';
 import 'package:flutter_firebase/models/user.dart';
+import 'package:flutter_firebase/provider_models/selection_data.dart';
+import 'package:flutter_firebase/services/database.dart';
 // import 'package:flutter_firebase/provider_models/selection_data.dart';
 import 'package:flutter_firebase/shared/large_custom_button.dart';
 import 'package:flutter_firebase/shared/small_custom_button.dart';
@@ -9,15 +11,13 @@ import 'package:provider/provider.dart';
 class CreateGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // final selectionData = Provider.of<SelectionData>(context);
+    final selectionData = Provider.of<SelectionData>(context);
+    final user = Provider.of<User>(context);
     // final user = Provider.of<User>(context);
     final mySession = Provider.of<Session>(context);
     List<UserData> usersJoined = [];
     String sessionCode = 'xxxx';
     if (mySession != null) {
-      print(mySession.id);
-      print(mySession.sessionCode);
-      print(mySession.members);
       sessionCode = mySession.sessionCode;
       usersJoined = mySession.members;
     }
@@ -53,8 +53,18 @@ class CreateGroup extends StatelessWidget {
             SizedBox(height: 20.0),
             LargeCustomButton(
               child: Text('All of us are here!'),
-              onPressed: () {},
+              onPressed: () async {
+                // TODO: extract this logic into a function
+                selectionData.setOptionsForUsers(mySession.members);
+                selectionData.chooseRandomly();
+                var selection = selectionData.finalSelection;
+                await DatabaseService(uid: user.uid)
+                    .setGroupSelection(selection);
+                // Need to reset the session, or we'll end up using the same one
+                Navigator.pushNamed(context, '/displaySelection');
+              },
             ),
+            // TODO: make this list pretty
             ListView.builder(
               shrinkWrap: true,
               itemCount: usersJoined.length,

@@ -51,6 +51,7 @@ class FavoritesOverview extends StatelessWidget {
     void _onChoiceButtonPress() {
       var numFavorites = favorites.length;
       if (numFavorites > 1) {
+        selectionData.resetSelection();
         selectionData.setOptions(favorites);
         Navigator.pushNamed(context, '/soloOrGroup');
       } else {

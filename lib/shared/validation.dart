@@ -12,3 +12,13 @@ class PasswordFieldValidator {
     return value.length < 6 ? 'Password must be 6+ characters' : null;
   }
 }
+
+class SelectionCodeValidator {
+  static String validate(String value) {
+    if (value.isEmpty) {
+      return 'Enter a code';
+    }
+    bool isValid = RegExp(r"^[A-Za-z]{4}$").hasMatch(value);
+    return isValid ? null : 'Code must be exactly 4 letters';
+  }
+}

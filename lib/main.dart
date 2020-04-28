@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/provider_models/selection_data.dart';
 import 'package:flutter_firebase/screens/selection/create_group.dart';
+import 'package:flutter_firebase/screens/selection/display_selection.dart';
 import 'package:flutter_firebase/screens/selection/join_group.dart';
 import 'package:flutter_firebase/screens/selection/join_or_create_group.dart';
 import 'package:flutter_firebase/screens/selection/selection.dart';
@@ -68,6 +69,7 @@ class MainApp extends StatelessWidget {
           '/joinOrCreateGroup': (context) => JoinOrCreateGroup(),
           '/joinGroup': (context) => JoinGroup(),
           '/createGroup': (context) => CreateGroup(),
+          '/displaySelection': (context) => DisplaySelection(),
         },
       ),
     );

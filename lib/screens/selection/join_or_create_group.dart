@@ -36,7 +36,7 @@ class JoinOrCreateGroup extends StatelessWidget {
             LargeCustomButton(
               onPressed: () {
                 selectionData.selectGroupType(selectionGroupType.group);
-                DatabaseService(uid: user.uid).createSession();
+                DatabaseService(uid: user.uid).getOrCreateSession();
                 Navigator.pushNamed(context, '/createGroup');
               },
               child: Text('Create'),

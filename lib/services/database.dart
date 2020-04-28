@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:random_string/random_string.dart';
 import 'package:flutter_firebase/models/favorite.dart';
 import 'package:flutter_firebase/models/session.dart';
 import 'package:flutter_firebase/models/user.dart';
@@ -100,18 +101,86 @@ class DatabaseService {
     return _userDataFromSnapshot(results);
   }
 
-  Future createSession() async {
-    UserData creator = await getUserDataById(uid);
-    // TODO: make this code random
+  String _generateSessionCode() {
     // TODO: make sure the code isn't reused
+    return randomAlpha(4).toUpperCase();
+  }
+
+  Future<String> validateSessionCode(String code) async {
+    if (code.isEmpty) {
+      return 'Empty';
+    }
+    return null;
+  }
+
+  Future getOrCreateSession() async {
+    UserData creator = await getUserDataById(uid);
+    var snapshot = await sessionCollection
+        .where('creatorId', isEqualTo: uid)
+        .getDocuments();
+    if (snapshot.documents.length > 0) {
+      return;
+    }
     // TODO: make sure the session has an expiration
-    String sessionCode = 'ABCD';
+    String sessionCode = _generateSessionCode();
     var creatorData = creator.toMap();
     return await sessionCollection.document().setData({
       'creatorId': uid,
       'sessionCode': sessionCode,
       'members': [creatorData]
     });
+  }
+
+  Future<bool> joinSession(code) async {
+    UserData joiner = await getUserDataById(uid);
+    var joinerData = joiner.toMap();
+    var snapshot = await sessionCollection
+        .where('sessionCode', isEqualTo: code)
+        .getDocuments();
+    try {
+      var document = snapshot.documents.first;
+      var data = document.data;
+      List<dynamic> members = data['members'];
+      members.add(joinerData);
+      data['members'] = members;
+      // TODO: ensure user can only join once
+      await sessionCollection.document(document.documentID).setData(data);
+      return true;
+    } catch (e) {
+      print(e);
+    }
+    return false;
+  }
+
+  Future clearMySession() async {
+    QuerySnapshot results = await sessionCollection
+        .where('creatorId', isEqualTo: uid)
+        .getDocuments();
+    try {
+      var document = results.documents.first;
+      if (document != null) {
+        await sessionCollection.document(document.documentID).delete();
+      }
+    } catch (e) {
+      print('Error deleting session: $e');
+    }
+  }
+
+  Future setGroupSelection(Favorite selection) async {
+    QuerySnapshot results = await sessionCollection
+        .where('creatorId', isEqualTo: uid)
+        .getDocuments();
+    try {
+      var document = results.documents.first;
+      var data = document.data;
+      data['selection'] = {
+        'foodType': selection.foodType,
+        'name': selection.name
+      };
+      await sessionCollection.document(document.documentID).setData(data);
+    } catch (e) {
+      print('Error setting selection: $e');
+    }
   }
 
   Session _sessionDataFromSnapshot(QuerySnapshot snapshot) {
@@ -125,15 +194,32 @@ class DatabaseService {
     membersMapList.forEach((member) {
       members.add(UserData.fromMap(member));
     });
+    Favorite selection;
+    if (data['selection'] != null) {
+      selection = Favorite(
+        foodType: data['selection']['foodType'],
+        name: data['selection']['name'],
+      );
+    }
     return Session(
-        id: firstDocument.documentID,
-        sessionCode: data['sessionCode'],
-        members: members);
+      id: firstDocument.documentID,
+      sessionCode: data['sessionCode'],
+      members: members,
+      selection: selection,
+    );
   }
 
   Stream<Session> get createdSession {
     var results = sessionCollection
         .where('creatorId', isEqualTo: uid)
+        .snapshots()
+        .map(_sessionDataFromSnapshot);
+    return results;
+  }
+
+  Stream<Session> sessionByCodeStream(String sessionCode) {
+    var results = sessionCollection
+        .where('sessionCode', isEqualTo: sessionCode)
         .snapshots()
         .map(_sessionDataFromSnapshot);
     return results;
