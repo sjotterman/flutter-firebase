@@ -1,6 +1,7 @@
-# flutter_firebase
+# Meal Picker
 
-A mobile app built with FLutter, Firebase Auth, and Firestore.
+A mobile app built with Flutter, Firebase Auth, and Firestore.
+Save favorites and have the app pick what you should eat next.
 
 ## Getting Started
 
