@@ -50,6 +50,9 @@ jobs:
           flutter-version: '1.12.14'
           channel: 'dev'
       - name: Run Flutter Driver tests
+        env: 
+          TEST_EMAIL: ${{ secrets.TEST_EMAIL }}
+          TEST_PASSWORD: ${{ secrets.PASSWORD }}  
         uses: reactivecircus/android-emulator-runner@v1
         with:
           api-level: ${{ matrix.api-level }}
