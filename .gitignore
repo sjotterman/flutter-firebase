@@ -42,3 +42,6 @@ lib/generated_plugin_registrant.dart
 
 
 /.vscode/
+
+# Flutter driver script containing env vars
+drive.sh

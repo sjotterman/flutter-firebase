@@ -64,20 +64,22 @@ class FavoritesOverview extends StatelessWidget {
         //   image: DecorationImage(
         //       image: AssetImage('assets/coffee_bg.png'), fit: BoxFit.cover),
         // ),
+        key: Key('favorites_overview'),
         child: Column(
-      children: <Widget>[
-        SizedBox(height: 20.0),
-        LargeCustomButton(
-          onPressed: () => _onChoiceButtonPress(),
-          child: Text('What should I eat?'),
-        ),
-        SizedBox(height: 20.0),
-        LargeCustomButton(
-          onPressed: () => _showAddFavoritePanel(),
-          child: Text('Add favorite food'),
-        ),
-        Expanded(child: FavoritesList()),
-      ],
-    ));
+          children: <Widget>[
+            SizedBox(height: 20.0),
+            LargeCustomButton(
+              key: Key('eat_something_button'),
+              onPressed: () => _onChoiceButtonPress(),
+              child: Text('What should I eat?'),
+            ),
+            SizedBox(height: 20.0),
+            LargeCustomButton(
+              onPressed: () => _showAddFavoritePanel(),
+              child: Text('Add favorite food'),
+            ),
+            Expanded(child: FavoritesList()),
+          ],
+        ));
   }
 }
